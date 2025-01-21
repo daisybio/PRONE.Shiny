@@ -12,7 +12,7 @@ Data pre-processing techniques, in particular, normalization of data post-acquis
 
 Here, we present PRONE, a user-friendly R package that comes with a Shiny app that employs state-of-the-art normalization methods and enables simple evaluation of normalization methods through both quantitative and qualitative evaluation metrics and DE analysis. 
 
-A detailed description of the PRONE package that is also useful for navigation through the Shiny app is available [here](https://lisiarend.github.io/PRONE.R/).
+A detailed description of the PRONE package that is also useful for navigation through the Shiny app is available [here](https://github.com/daisybio/PRONE).
 
 There are three possibilities to run the R Shiny app PRONE:
 
@@ -20,7 +20,7 @@ There are three possibilities to run the R Shiny app PRONE:
 
 The public web interface is available at [https://exbio.wzw.tum.de/prone/](https://exbio.wzw.tum.de/prone/). 
 
-Currently, the docker image [lisiarend/prone.shiny:v0.0.1](https://hub.docker.com/layers/lisiarend/prone.shiny/v0.0.1/images/sha256-5175a29c9c6e34e7c1bfd677816d8cc30be085aff263a5b43c4e9f2c0ac6965b?context=repo) is running.
+Currently, the docker image [lisiarend/prone.shiny:latest](https://hub.docker.com/repository/docker/lisiarend/prone.shiny/general) is running.
 
 ### Docker Image
 
@@ -31,7 +31,7 @@ docker pull lisiarend/prone.shiny:latest
 
 # OR for a specific version
 
-docker pull lisiarend/prone.shiny:v0.0.1 
+docker pull lisiarend/prone.shiny:v0.0.3
 ```
 
 You can run the app in a single container using
@@ -41,7 +41,7 @@ docker run --rm -p 3838:3838 lisiarend/prone.shiny:latest
 
 # OR for a specific version
 
-docker run --rm -p 3838:3838 lisiarend/prone.shiny:v0.0.1
+docker run --rm -p 3838:3838 lisiarend/prone.shiny:v0.0.3
 
 ```
 
