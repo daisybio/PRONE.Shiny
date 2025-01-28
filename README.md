@@ -60,7 +60,7 @@ renv::restore()
 
 ## Citation
 
-If you are using either the R package or the Shiny app, please cite the following paper: TODO
+The preprint is available on BioRxiv: [https://doi.org/10.1101/2025.01.27.634993](https://doi.org/10.1101/2025.01.27.634993).
 
 ## Issues
 
