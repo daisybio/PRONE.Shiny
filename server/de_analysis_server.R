@@ -95,8 +95,38 @@ observeEvent(input$performDEAnalysis, {
                          alpha = p,
                          K = K,
                          B = B,
-                         DEqMS_PSMs_column = DEqMS_column)
-  
+                         DEqMS_PSMs_column = DEqMS_column,
+                         trend = as.logical(trend),
+                         robust = as.logical(robust))
+    
+    # add to steps
+    de_analysis_steps <- paste0("DE Analysis: Performed DE analysis using the following parameters: ",
+                                                                                           "input data = ", paste0(ain, collapse = "; "),
+                                                                                           ", comparisons = ", paste0(comparisons, collapse = "; "),
+                                                                                           ", condition = ", condition,
+                                                                                           ", method = ", method)
+    
+    if(logfc_b){
+      de_analysis_steps <- paste0(de_analysis_steps, ", logFC threshold = ", logfc)
+    }
+    if(padj_b){
+      de_analysis_steps <- paste0(de_analysis_steps, ", adjusted p-value threshold = ", p)
+    } else {
+      de_analysis_steps <- paste0(de_analysis_steps, ", p-value threshold = ", p)
+    }
+    if(method == "ROTS"){
+      de_analysis_steps <- paste0(de_analysis_steps, ", K = ", K, ", B = ", B)
+    } else if(method == "DEqMS"){
+      de_analysis_steps <- paste0(de_analysis_steps, ", DEqMS column = ", DEqMS_column)
+    } else if(method == "limma"){
+      de_analysis_steps <- paste0(de_analysis_steps, ", trend = ", trend, ", robust = ", robust)
+    }
+    
+    metadata(reactiveVals$se)$steps[[length(metadata(reactiveVals$se)$steps)+1]] <- paste0(de_analysis_steps, ".")
+    
+    browser()
+    
+                                          
     # save current settings
     de_current <- data.table("Method" = c(method),
                              "Input Data" = c(ain),

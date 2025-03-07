@@ -31,6 +31,9 @@ observeEvent(input$performOutlierDetectionButton,{
   polygon_plot <- poma_res$polygon_plot
   distance_plot <- poma_res$distance_boxplot
   outliers_dt <- as.data.table(poma_res$outliers)
+  reactiveVals$poma_type <- type
+  reactiveVals$poma_coeff <- coeff
+  reactiveVals$poma_method <- method
   reactiveVals$poma_condition <- condition
   reactiveVals$poma_polygon <- polygon_plot
   reactiveVals$poma_boxplot <- distance_plot
@@ -68,6 +71,9 @@ observeEvent(input$confirmSamplesManuallyRemoval, {
     column_rm <- input$removeSamplesColumn
     
     reactiveVals$se <- reactiveVals$se[, ! reactiveVals$se[[column_rm]] %in% samples_to_remove]
+    # add removal of sample to steps
+    metadata(reactiveVals$se)$steps[[length(metadata(reactiveVals$se)$steps)+1]] <- paste0("Outlier Detection: Manually removed sample(s): ", paste0(samples_to_remove, collapse=", "), ".")
+    
     reactiveVals$se_filtered <- reactiveVals$se
     # run outlier detection without samples --> only if outlier detection have already been run
     if(!is.null(reactiveVals$polygon_plot)){
@@ -77,13 +83,13 @@ observeEvent(input$confirmSamplesManuallyRemoval, {
       coeff <- input$pomaCoefficient
       metadata(reactiveVals$se)$condition <- condition
       poma_res <- detect_outliers_POMA(reactiveVals$se, ain="log2", method = method, type = type, group = TRUE, coeff = coeff)
-      polygon_plot <- poma_res$polygon_plot
-      distance_plot <- poma_res$distance_boxplot
+      reactiveVals$polygon_plot <- poma_res$polygon_plot
+      reactiveVals$distance_plot <- poma_res$distance_boxplot
+      reactiveVals$outliers_dt <- as.data.table(poma_res$outliers)
+      reactiveVals$poma_type <- type
+      reactiveVals$poma_coeff <- coeff
+      reactiveVals$poma_method <- method
       reactiveVals$poma_condition <- condition
-      outliers_dt <- as.data.table(poma_res$outliers)
-      reactiveVals$polygon_plot <- polygon_plot
-      reactiveVals$distance_plot <- distance_plot
-      reactiveVals$outliers_dt <- outliers_dt
     }
     # update
     updatePickerInput(session = session, inputId = "removeSamples", choices =   colData(reactiveVals$se)[[input$removeSamplesColumn]])
@@ -116,19 +122,28 @@ observeEvent(input$removeOutliersButton,{
 observeEvent(input$confirmOutlierRemoval, {
   if(input$confirmOutlierRemoval){
     reactiveVals$se <- remove_POMA_outliers(reactiveVals$se, reactiveVals$outliers_dt)
+    metadata(reactiveVals$se)$steps[[length(metadata(reactiveVals$se)$steps)+1]] <- paste0("Outlier Detection: Removed sample(s) ", 
+                                                                                           paste0(reactiveVals$outliers_dt$sample, collapse=", "), 
+                                                                                           " with POMA using these parameters: distance method = ", 
+                                                                                           reactiveVals$poma_method, ", type = ", 
+                                                                                           reactiveVals$poma_type, ", condition = ", 
+                                                                                           reactiveVals$poma_condition, ", and coeff = ", 
+                                                                                           reactiveVals$poma_coeff, ".")
     reactiveVals$se_filtered <- reactiveVals$se
     # run outlier detection without outliers
     condition <- input$pomaGroup
     method <- input$pomaMethod
     type <- input$pomaType
     metadata(reactiveVals$se)$condition <- condition
-    poma_res <- detect_POMA__outliers(reactiveVals$se, ain="log2", method = method, type = type, group = TRUE)
-    polygon_plot <- poma_res$polygon_plot
-    distance_plot <- poma_res$distance_boxplot
-    outliers_dt <- as.data.table(poma_res$outliers)
-    reactiveVals$poma_polygon <- polygon_plot
-    reactiveVals$poma_boxplot <- distance_plot
-    reactiveVals$outliers_dt <- outliers_dt
+    coeff <- input$pomaCoefficient
+    poma_res <- detect_outliers_POMA(reactiveVals$se, ain="log2", method = method, type = type, group = TRUE, coeff = coeff)
+    reactiveVals$polygon_plot <- poma_res$polygon_plot
+    reactiveVals$distance_plot <- poma_res$distance_boxplot
+    reactiveVals$outliers_dt <- as.data.table(poma_res$outliers)
+    reactiveVals$poma_type <- type
+    reactiveVals$poma_coeff <- coeff
+    reactiveVals$poma_method <- method
+    reactiveVals$poma_condition <- condition
     # update
     updatePickerInput(session = session, inputId = "removeSamples", choices = colData(reactiveVals$se)$Column)
   }

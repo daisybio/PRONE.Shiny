@@ -40,7 +40,7 @@ header <-
     tags$li(
       a(
         div(icon("circle-info", style = "color:white;"), " Vignette"),
-        href="https://lisiarend.github.io/PRONE/",
+        href="https://daisybio.github.io/PRONE/",
         title="",
         icon = icon("circle-info"),
         target = "_blank"
@@ -148,8 +148,16 @@ body <-
                                             A detailed description of the PRONE package that is also useful for the navigation through the Shiny app is available <a href='https://lisiarend.github.io/PRONE/'>here</a>.
                                             </br>
                                             </br>
-                                            If you are using either the R package or the Shiny app, please cite the following paper: TODO
-                                            "
+                                            If you are using either the R package or the Shiny app, please cite the following paper:
+                                            </br>
+                                            </br>
+                                            <p style='margin-left: 10px;'>Systematic Evaluation of Normalization Approaches in Tandem Mass Tag and Label-Free Protein Quantification Data Using PRONE
+                                            </p>
+                                            <p style='margin-left: 10px;'>Lis Arend, Klaudia Adamowicz, Johannes R. Schmidt, Yuliya Burankova, Olga Zolotareva, Olga Tsoy, Josch K. Pauling, Stefan Kalkhof, Jan Baumbach, Markus List, Tanja Laske 
+                                            </p>
+                                            <p style='margin-left: 10px;'>bioRxiv 2025.01.27.634993; doi: <a href='https://doi.org/10.1101/2025.01.27.634993'>https://doi.org/10.1101/2025.01.27.634993</a>
+                                            </p>
+                     "
                    ),
                    style = "font-size: large;"
                  )

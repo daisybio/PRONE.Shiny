@@ -90,21 +90,22 @@ observeEvent(input$filterProteinsColumnButton,{
 observeEvent(input$confirmColumnRemoval, {
   if(input$confirmColumnRemoval){
     req(reactiveVals$se)
-    reactiveVals$se <- remove_proteins_in_column(reactiveVals$se, input$filterProteinsColumn, input$filterProteinsValue)
+    metadata(reactiveVals$se)$steps[[length(metadata(reactiveVals$se)$steps)+1]] <- paste0("Filter Proteins: Removed proteins with ", input$filterProteinsValue, " value in column ", input$filterProteinsColumn, ".")
+    reactiveVals$se <- filter_out_proteins_by_value(reactiveVals$se, input$filterProteinsColumn, input$filterProteinsValue)
     reactiveVals$se_filtered <- reactiveVals$se
   }
 })
 
 observeEvent(input$filterProteinsNAUpdateButton, {
   thr <- input$filterProteinsNAThr * 0.01
-  reactiveVals$se_filtered <- filter_NA_proteins_by_threshold(reactiveVals$se, thr)
+  reactiveVals$se_filtered <- filter_out_NA_proteins_by_threshold(reactiveVals$se, thr)
   reactiveVals$curr_NA_thr <- input$filterProteinsNAThr
   updateButton(session, "filterProteinsNAButton", label = " Filter Proteins", disabled = FALSE)
 })
 
 observeEvent(input$filterProteinsNAButton, {
   thr <- input$filterProteinsNAThr * 0.01
-  se_removed <- filter_NA_proteins_by_threshold(reactiveVals$se, thr)
+  se_removed <- filter_out_NA_proteins_by_threshold(reactiveVals$se, thr)
   nr_original <- nrow(reactiveVals$se)
   nr_removed <- nrow(se_removed)
   shinyalert(
@@ -130,8 +131,9 @@ observeEvent(input$filterProteinsNAButton, {
 observeEvent(input$confirmNARemoval, {
   if(input$confirmNARemoval){
     thr <- input$filterProteinsNAThr * 0.01
-    reactiveVals$se <- filter_NA_proteins_by_threshold(reactiveVals$se, thr)
+    reactiveVals$se <- filter_out_NA_proteins_by_threshold(reactiveVals$se, thr)
     reactiveVals$se_filtered <-  reactiveVals$se
+    metadata(reactiveVals$se)$steps[[length(metadata(reactiveVals$se)$steps)+1]] <- paste0("Filter Proteins: Filtered proteins with NA threshold of ", thr, "%.")
   }
 })
 
