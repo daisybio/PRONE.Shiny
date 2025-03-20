@@ -153,6 +153,33 @@ output$sidebar <- renderUI({
 observeEvent(input$download_data, {
   if(is.null(reactiveVals$se)){
     output <- HTML("No Data Uploaded")
+  } else if(length(metadata(reactiveVals$se)$steps) == 0){
+    methods <- names(assays(reactiveVals$se))
+    output <- fluidRow(
+      style = "padding-left: 10px; padding-right: 10px",
+      awesomeCheckboxGroup(
+        inputId = "download_assays",
+        label = "Select Data You Want To Download:",
+        choices = methods,
+        selected = methods
+      ),
+      radioGroupButtons(
+        inputId = "download_assays_type",
+        label = "Select Type of Data To Download:",
+        choices = c("As SummarizedExperiment", "As CSV"),
+        selected = ("As SummarizedExperiment"),
+        justified = TRUE
+      ),
+      downloadButton(
+        "downloadData",
+        " Download Data ",
+        icon = icon("download"),
+        style = "success",
+        disabled = FALSE,
+      ),
+      HTML("<br><br>"),
+      HTML("<br><b>No Steps Executed with the Current Data !</b>")
+    )
   } else {
     methods <- names(assays(reactiveVals$se))
     output <- fluidRow(
@@ -177,6 +204,22 @@ observeEvent(input$download_data, {
           style = "success",
           disabled = FALSE,
         ),
+        
+        # add some space here
+        HTML("<br><br>"),
+        HTML("<br><b>Executed Data Steps:</b>"),
+        tags$ol(
+          lapply(metadata(reactiveVals$se)$steps, function(x) {
+            tags$li(x)
+          })
+        ),
+        downloadButton(
+          "downloadSteps",
+          " Download Steps ",
+          icon = icon("download"),
+          style = "success",
+          disabled = FALSE,
+        ),
     )
   }
   showModal(
@@ -192,12 +235,16 @@ observeEvent(input$download_assays, {
   if(is.null(input$download_assays)){
     # disable button
     disable("downloadData")
+    disable("downloadSteps")
   } else if(length(input$download_assays) == 0){
     # disable
     disable("downloadData")
+    disable("downloadSteps")
   } else {
     # enable
     enable("downloadData")
+    enable("downloadSteps")
+    
   }
 }, ignoreNULL = FALSE)
 
@@ -231,6 +278,18 @@ output$downloadData <- downloadHandler(
       se <- PRONE::subset_SE_by_norm(reactiveVals$se, input$download_assays)
       saveRDS(se, file)
     }
+    waiter_hide(id="app")
+  }
+)
+
+output$downloadSteps <- downloadHandler(
+  filename = "Data_Steps.txt",
+  content = function(file){
+    waiter_show(id = "app",html = tagList(spinner$logo,
+                                          HTML("<br>Downloading...")),
+                color=spinner$color)
+    steps <- as.character(metadata(reactiveVals$se)$steps)  # Convert to character
+    writeLines(steps, file)
     waiter_hide(id="app")
   }
 )

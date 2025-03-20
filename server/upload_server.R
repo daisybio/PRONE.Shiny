@@ -162,6 +162,14 @@ observeEvent(input$loadDataExample, {
   updatePickerInput(session = session, inputId = "deNormInput", choices = names(assays(se))[names(assays(se)) != "raw"])
   updatePickerInput(session = session, inputId = "deColComparison", choices = colnames(colData(se))[colnames(colData(se)) != "Column"])
   updateSelectizeInput(session = session, inputId = "NAheatmap_color", choices = colnames(colData(se)), selected = colnames(colData(se))[2])
+  all_norm_methods <- c("GlobalMean","GlobalMedian", "Median", "Mean", "IRS", "Quantile", "VSN",
+                        "LoessF", "LoessCyc", "RLR", "RlrMA", "RlrMACyc", "EigenMS", "MAD", "RobNorm", "TMM", "NormicsVSN", "NormicsMedian", "limBE")
+  updatePickerInput(session = session, inputId = "normMethods", choices = all_norm_methods, selected = NULL)
+  reactiveVals$de_enrichment_intersection_plot <- NULL
+  reactiveVals$de_enrichment_heatmap_plot <- NULL
+  reactiveVals$de_enrichment_table <- NULL
+  
+
   # check unique columns (for labeling rows of heatmap)
   cols <- sapply(as.data.table(colData(se)), function(x) if(length(unique(x)) == length(x)) return(TRUE) else return(FALSE))
   label_options <- colnames(colData(se))[cols]
@@ -241,6 +249,14 @@ observeEvent(input$loadDataSE, {
   updatePickerInput(session = session, inputId = "deColComparison", choices = colnames(colData(se))[colnames(colData(se)) != "Column"])
   updateSelectizeInput(session = session, inputId = "NAheatmap_color", choices = colnames(colData(se)), selected = colnames(colData(se))[2])
   updatePickerInput(session = session, inputId = "deDEqMSColumn", choices = colnames(rowData(se)))
+  all_norm_methods <- c("GlobalMean","GlobalMedian", "Median", "Mean", "IRS", "Quantile", "VSN",
+                        "LoessF", "LoessCyc", "RLR", "RlrMA", "RlrMACyc", "EigenMS", "MAD", "RobNorm", "TMM", "NormicsVSN", "NormicsMedian", "limBE")
+  updatePickerInput(session = session, inputId = "normMethods", choices = all_norm_methods, selected = NULL)
+  reactiveVals$de_enrichment_intersection_plot <- NULL
+  reactiveVals$de_enrichment_heatmap_plot <- NULL
+  reactiveVals$de_enrichment_table <- NULL
+  
+
   # check unique columns (for labeling rows of heatmap)
   cols <- sapply(as.data.table(colData(se)), function(x) if(length(unique(x)) == length(x)) return(TRUE) else return(FALSE))
   label_options <- colnames(colData(se))[cols]
@@ -311,6 +327,13 @@ observeEvent(input$loadDataOwn, {
       updatePickerInput(session = session, inputId = "deNormInput", choices = names(assays(se))[names(assays(se)) != "raw"])
       updatePickerInput(session = session, inputId = "deColComparison", choices = colnames(colData(se))[colnames(colData(se)) != "Column"])
       updateSelectizeInput(session = session, inputId = "NAheatmap_color", choices = colnames(colData(se)), selected = colnames(colData(se))[2])
+      all_norm_methods <- c("GlobalMean","GlobalMedian", "Median", "Mean", "IRS", "Quantile", "VSN",
+                            "LoessF", "LoessCyc", "RLR", "RlrMA", "RlrMACyc", "EigenMS", "MAD", "RobNorm", "TMM", "NormicsVSN", "NormicsMedian", "limBE")
+      updatePickerInput(session = session, inputId = "normMethods", choices = all_norm_methods, selected = NULL)
+      reactiveVals$de_enrichment_intersection_plot <- NULL
+      reactiveVals$de_enrichment_heatmap_plot <- NULL
+      reactiveVals$de_enrichment_table <- NULL
+
       # check unique columns (for labeling rows of heatmap)
       cols <- sapply(as.data.table(colData(se)), function(x) if(length(unique(x)) == length(x)) return(TRUE) else return(FALSE))
       label_options <- colnames(colData(se))[cols]

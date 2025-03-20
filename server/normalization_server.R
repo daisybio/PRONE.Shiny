@@ -52,6 +52,30 @@ observeEvent(input$performNormalization,{
                                     NormicsVSN_quantile = input$normMethodsNormics_quantile,
                                     VSN_quantile = input$normMethodsVSN_quantile
                                     )
+    
+    # save this as steps
+    normalization_step <- paste0("Normalization: ", paste(norm_methods_all, collapse = "; "), " with the following parameters: data input: ", input$normRawLog)
+    if("RobNorm" %in% norm_methods_all){
+      normalization_step <- paste0(normalization_step, ", RobNorm gamma = ", input$normMethodsGamma)
+    }
+    if("EigenMS" %in% norm_methods_all){
+      normalization_step <- paste0(normalization_step, ", EigenMS condition = ", input$normMethodsCondition)
+    }
+    if("VSN" %in% norm_methods_all){
+      normalization_step <- paste0(normalization_step, ", lts.quantile for VSN = ", input$normMethodsVSN_quantile)
+    }
+    if("NormicsVSN" %in% norm_methods_all){
+      normalization_step <- paste0(normalization_step, 
+                                   ", lts.quantile for Normics = ", 
+                                   input$normMethodsNormics_quantile, 
+                                   ", data reduction for Normics = ", 
+                                   input$normMethodsNormics_reduce_corr,
+                                   ", top x proteins for Normics = ", 
+                                   input$normMethodsNormics_top_x)
+    }
+    
+    metadata(reactiveVals$se)$steps[[length(metadata(reactiveVals$se)$steps)+1]] <- paste0(normalization_step, ".")
+    
     # update picker input (normInput) --> for combination of methods
     assays <- names(assays(reactiveVals$se))
     # update picker input (normMethods) --> those that have already been performed --> disable
