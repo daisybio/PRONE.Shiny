@@ -18,8 +18,6 @@ sapply(list.files("ui", full.names = TRUE), source, environment())
 options(spinner.color = "#95AAD3")
 spinner <- list(logo = list(spin_loaders(id = 5, color = "#95AAD3")), color="rgb(153, 199, 191, .5)")
 
-
-
 header <-
   dashboardHeader(
     title = span(img(src="PRONE_Text_Logo.png", height = "60px")),

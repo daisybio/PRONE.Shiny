@@ -339,31 +339,6 @@
       ],
       "Hash": "7bbf3be5bc901319e0cd0cd9528af32b"
     },
-    "GGally": {
-      "Package": "GGally",
-      "Version": "2.2.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "RColorBrewer",
-        "dplyr",
-        "ggplot2",
-        "ggstats",
-        "grDevices",
-        "grid",
-        "gtable",
-        "lifecycle",
-        "magrittr",
-        "plyr",
-        "progress",
-        "rlang",
-        "scales",
-        "tidyr",
-        "utils"
-      ],
-      "Hash": "b11ac45c916608b7d1374ff87da053d5"
-    },
     "GenomeInfoDb": {
       "Package": "GenomeInfoDb",
       "Version": "1.40.1",
@@ -693,20 +668,19 @@
     },
     "PRONE": {
       "Package": "PRONE",
-      "Version": "0.99.7",
+      "Version": "1.0.5",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "PRONE",
-      "RemoteUsername": "lisiarend",
+      "RemoteUsername": "daisybio",
       "RemoteRef": "HEAD",
-      "RemoteSha": "ed9444990c49aa024c5e632b3f45cd3f8f193668",
+      "RemoteSha": "7869d858f0ea506278699108cb4712b6b52ac10f",
       "Requirements": [
         "Biobase",
         "ComplexHeatmap",
         "ComplexUpset",
         "DEqMS",
-        "GGally",
         "MASS",
         "MSnbase",
         "NormalyzerDE",
@@ -739,9 +713,10 @@
         "stringr",
         "tibble",
         "tidyr",
+        "vegan",
         "vsn"
       ],
-      "Hash": "a990d4f0b9aa7c604b1a79c966e77c31"
+      "Hash": "294190feb4bdfed654a24c484dc49a3e"
     },
     "PSMatch": {
       "Package": "PSMatch",
@@ -1341,27 +1316,6 @@
       ],
       "Hash": "a4652c36d1f8abfc3ddf4774f768c934"
     },
-    "broom.helpers": {
-      "Package": "broom.helpers",
-      "Version": "1.15.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "broom",
-        "cli",
-        "dplyr",
-        "labelled",
-        "lifecycle",
-        "purrr",
-        "rlang",
-        "stats",
-        "stringr",
-        "tibble",
-        "tidyr"
-      ],
-      "Hash": "768cae43c3da698d6b11763777301e43"
-    },
     "bslib": {
       "Package": "bslib",
       "Version": "0.8.0",
@@ -1497,16 +1451,6 @@
         "utils"
       ],
       "Hash": "b21916dd77a27642b447374a5d30ecf3"
-    },
-    "clipr": {
-      "Package": "clipr",
-      "Version": "0.8.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "utils"
-      ],
-      "Hash": "3f038e5ac7f41d4ac41ce658c85e3042"
     },
     "clock": {
       "Package": "clock",
@@ -1887,22 +1831,6 @@
       ],
       "Hash": "c2efdd5f0bcd1ea861c2d4e2a883a67d"
     },
-    "forcats": {
-      "Package": "forcats",
-      "Version": "1.0.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "cli",
-        "glue",
-        "lifecycle",
-        "magrittr",
-        "rlang",
-        "tibble"
-      ],
-      "Hash": "1a0a9a3d5083d0d573c4214576f1e690"
-    },
     "foreach": {
       "Package": "foreach",
       "Version": "1.5.2",
@@ -2087,29 +2015,6 @@
         "withr"
       ],
       "Hash": "cc3361e234c4a5050e29697d675764aa"
-    },
-    "ggstats": {
-      "Package": "ggstats",
-      "Version": "0.6.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "broom.helpers",
-        "cli",
-        "dplyr",
-        "forcats",
-        "ggplot2",
-        "lifecycle",
-        "magrittr",
-        "patchwork",
-        "purrr",
-        "rlang",
-        "scales",
-        "stats",
-        "stringr",
-        "tidyr"
-      ],
-      "Hash": "02cdab34154e9e70dac279afbb20d34b"
     },
     "ggtext": {
       "Package": "ggtext",
@@ -2296,27 +2201,6 @@
         "vctrs"
       ],
       "Hash": "e7aabf81944f6c6cbbcec1f85827a279"
-    },
-    "haven": {
-      "Package": "haven",
-      "Version": "2.5.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "cli",
-        "cpp11",
-        "forcats",
-        "hms",
-        "lifecycle",
-        "methods",
-        "readr",
-        "rlang",
-        "tibble",
-        "tidyselect",
-        "vctrs"
-      ],
-      "Hash": "9171f898db9d9c4c1b2c745adc2c1ef1"
     },
     "highr": {
       "Package": "highr",
@@ -2566,24 +2450,6 @@
         "stats"
       ],
       "Hash": "b64ec208ac5bc1852b285f665d6368b3"
-    },
-    "labelled": {
-      "Package": "labelled",
-      "Version": "2.13.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "dplyr",
-        "haven",
-        "lifecycle",
-        "rlang",
-        "stringr",
-        "tidyr",
-        "tidyselect",
-        "vctrs"
-      ],
-      "Hash": "ad4b6d757624221aec6220b8c78defeb"
     },
     "lambda.r": {
       "Package": "lambda.r",
@@ -3226,16 +3092,6 @@
       ],
       "Hash": "d188d81b219bbf395f3281d3edb6328c"
     },
-    "prettyunits": {
-      "Package": "prettyunits",
-      "Version": "1.2.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "6b01fc98b1e86c4f705ce9dcfd2f57c7"
-    },
     "prodlim": {
       "Package": "prodlim",
       "Version": "2024.06.25",
@@ -3254,20 +3110,6 @@
         "survival"
       ],
       "Hash": "d1e73a231e9442c29e21876f303382fc"
-    },
-    "progress": {
-      "Package": "progress",
-      "Version": "1.2.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "R6",
-        "crayon",
-        "hms",
-        "prettyunits"
-      ],
-      "Hash": "f4625e061cb2865f111b47ff163a5ca6"
     },
     "progressr": {
       "Package": "progressr",
@@ -3372,29 +3214,6 @@
         "R"
       ],
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
-    },
-    "readr": {
-      "Package": "readr",
-      "Version": "2.1.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "R6",
-        "cli",
-        "clipr",
-        "cpp11",
-        "crayon",
-        "hms",
-        "lifecycle",
-        "methods",
-        "rlang",
-        "tibble",
-        "tzdb",
-        "utils",
-        "vroom"
-      ],
-      "Hash": "9de96463d2117f6ac49980577939dfb3"
     },
     "recipes": {
       "Package": "recipes",
@@ -4006,32 +3825,6 @@
         "R"
       ],
       "Hash": "c826c7c4241b6fc89ff55aaea3fa7491"
-    },
-    "vroom": {
-      "Package": "vroom",
-      "Version": "1.6.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "bit64",
-        "cli",
-        "cpp11",
-        "crayon",
-        "glue",
-        "hms",
-        "lifecycle",
-        "methods",
-        "progress",
-        "rlang",
-        "stats",
-        "tibble",
-        "tidyselect",
-        "tzdb",
-        "vctrs",
-        "withr"
-      ],
-      "Hash": "390f9315bc0025be03012054103d227c"
     },
     "vsn": {
       "Package": "vsn",
