@@ -39,6 +39,8 @@ RUN R -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org
 COPY renv.lock renv.lock
 RUN R -e "renv::restore()"
 
+RUN R -e "BiocManager::install('preprocessCore', configure.args = c(preprocessCore='--disable-threading'), force=TRUE, update=TRUE, type='source')"
+
 # copy shiny app
 COPY ./*.R ./
 COPY ./data ./data
