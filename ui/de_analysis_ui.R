@@ -15,7 +15,7 @@ deAnalysisBody <- function() {
   
   DEComparisonPopover <-  bsPopover(id = "DEComparisonInfo",
                                     title = "Comparisons that should be executed.",
-                                    content = "DE analysis is typically performed pairwise. Select here all pairwise comparisons that should be evaluated.")
+                                    content = "DE analysis is typically performed pairwise. Select here all pairwise comparisons that should be evaluated. To ensure clarity, a comparison in the form of Condition-Reference, where the logFC is positive, signifies that the protein intensity is greater in the Condition compared to the Reference.")
   
   DEROTSBPopover <-  bsPopover(id = "DEROTSBInfo",
                                title = "Number of bootstrapping.",
