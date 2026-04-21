@@ -24,8 +24,8 @@ goodbyeBody <-  tabItem(tabName = "goodbye", fluidRow(shinydashboard::box(
                                             </p>
                                             <p style='margin-left: 20px;'>Lis Arend, Klaudia Adamowicz, Johannes R. Schmidt, Yuliya Burankova, Olga Zolotareva, Olga Tsoy, Josch K. Pauling, Stefan Kalkhof, Jan Baumbach, Markus List, Tanja Laske
                                             </p>
-                                            <p style='margin-left: 20px;'>bioRxiv 2025.01.27.634993; doi: <a href='https://doi.org/10.1101/2025.01.27.634993'>https://doi.org/10.1101/2025.01.27.634993</a>
-                                            </p>"
+					    <p style='margin-left: 10px;'>Briefings in Bioinformatics, Volume 26, Issue 3, May 2025, bbaf201; doi: <a href='https://doi.org/10.1093/bib/bbaf201'>https://doi.org/10.1093/bib/bbaf201</a>
+					    </p>
         ),
         style = "font-size: large;"
       )
